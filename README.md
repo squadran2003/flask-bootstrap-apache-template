@@ -5,6 +5,8 @@ A base template for flask app with all the css files included for twitter bootst
   The idea for this template came from building a few flask web apps. I found it a bit tedious re creating all the folders,html files etc. This template aims to also make deployment to a apache2 server easy.
   
 ## Example
+
+```python
 Folder Hiearchy
 
 templates
@@ -13,4 +15,6 @@ static
     .css files
   js
     .js files
-flaskapp.wsgi    
+flaskapp.wsgi
+
+```
