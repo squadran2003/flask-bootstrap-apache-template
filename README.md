@@ -15,6 +15,7 @@ static
     .css files
   js
     .js files
+app.py
 flaskapp.wsgi
 
 ```
