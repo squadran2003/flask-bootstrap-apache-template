@@ -19,3 +19,13 @@ app.py
 flaskapp.wsgi
 
 ```
+
+## Guide
+
+1) The folders are setup to so you can follow the below tutorial. See link below
+ https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+ This tutorial will help with deploying your app to a apache2 server.
+
+## Useful Tips
+1) Remember to make www-data the owner and group for your app folder and any other folders there after.
+   you can do this with the command chown www-data:wwwdata /var/www/yourappfolder 

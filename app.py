@@ -1,6 +1,12 @@
 from flask import Flask,request,render_template,redirect
 
-app = Flask(__name__)
+import os
+
+
+
+app = Flask(__name__,static_folder=os.getcwd()+"/static")
+app = Flask(__name__,template_folder=os.getcwd()+"/templates")
+
 
 
 @app.route('/')
