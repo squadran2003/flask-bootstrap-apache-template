@@ -36,6 +36,8 @@ YourApp
 
 For example lets say we had a folder called FlaskApp which holds all your flask apps on the server, and your app your are deploying was called TEST, your folder structure on the server should look like this once deployed.
 
+```python
+
 FlaskApp
   TEST
     static
@@ -43,6 +45,8 @@ FlaskApp
     venv
     app.py (*** rename this to __init__.py when the folder is deployed to the server)
   test.wsgi
+
+```  
 
 
 6)Once your folder is deployed to the server, navigate to TEST/venv and type the
