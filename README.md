@@ -77,6 +77,9 @@ application.secret_key = 'Add your secret key'
 ```
 
 9) Next create a .conf file in your site-available folder by running the following command below.
+
+```python
+
 nano /etc/apache2/sites-available/TEST.conf  where TEST is the name of the app
 
 ```
@@ -107,10 +110,15 @@ nano /etc/apache2/sites-available/TEST.conf  where TEST is the name of the app
 
 10) then run the command a2ensite TEST.
 
-11) Lastly we need to give apache access to the folders. navigate to /var/www/FlaskApp and type
-    the command chown -R www-data:www-data TEST
+11) Lastly we need to give apache access to the folders. navigate to
+    
+    /var/www/FlaskApp and type the command
 
-12) run the command service apache2 reload
+    chown -R www-data:www-data TEST
+
+12) run the command
+  
+    service apache2 reload
 
 This should be all your need to deploy your app to a apache server.
 
