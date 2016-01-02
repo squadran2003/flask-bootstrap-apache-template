@@ -1,31 +1,108 @@
-# flask-bootstrap-apache-template
-A base template for flask app with all the css files included for twitter bootstrap, also included a wsgi file for deployment to a apache server.
+##flask-bootstrap-apache-template
+A base template with correct folder structure for a flask app,the template also has all the css files for twitter bootstrap, also included a wsgi file for deployment to a apache server.
 
 ##Motivation
-  The idea for this template came from building a few flask web apps. I found it a bit tedious re creating all the folders,html files etc. This template aims to also make deployment to a apache2 server easy.
+  The idea for this template came from building a few flask web apps. I found it a bit tedious to recreate all the folders,html files etc. This template aims to also make deployment to a apache2 server easy. The one aspect of coding that made me want to pull my hair out was deployment. I hope this template and guide makes using and deploying flask apps easier for other developers.
   
 ## Example
 
 ```python
+
 Folder Hiearchy
 
-templates
-static
-  css
-    .css files
-  js
-    .js files
-app.py
-flaskapp.wsgi
+YourApp
+   templates
+   static
+     css
+      .css files
+     js
+       .js files
+   app.py
+   yourapp.wsgi
 
 ```
 
 ## Guide
 
-1) The folders are setup to so you can follow the below tutorial. See link below
- https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
- This tutorial will help with deploying your app to a apache2 server.
+1) Download the zip file and extract to the location of choice
+2) navigate into folder flask-bootstrap-apache-template/YourApp
+3) create a folder called venv which will be your virtual enviroment
+4) Rename the folder called YourApp to your app name.
+5) Rename the .wsgi file to your app name, preferably in lowercase to the app name
 
-## Useful Tips
-1) Remember to make www-data the owner and group for your app folder and any other folders there after.
-   you can do this with the command chown www-data:wwwdata /var/www/yourappfolder 
+For example lets say we had a folder called FlaskApp which holds all your flask apps on the server, and your app your are deploying was called TEST, your folder structure on the server should look like this once deployed.
+
+FlaskApp
+  TEST
+    static
+    templates
+    venv
+    app.py (*** rename this to __init__.py when the folder is deployed to the server)
+  test.wsgi
+
+
+6)Once your folder is deployed to the server, navigate to TEST/venv and type the
+  command virtualenv.(the period represents the current directory) and will install all python dependencies in the venv folder. 
+
+7)Still in the folder venv type the command source bin/activate which will activate the virtualenv.
+  Then install flask with the command pip install flask.
+
+8)Edit the test.wsgi file and change the commands as required  
+
+The wsgi file for deploying this app would look like this if your app was called TEST.
+
+```python
+
+#!/usr/bin/python
+import sys
+import logging
+
+activate_this = '/var/www/FlaskApp/TEST/venv/bin/activate_this.py'
+execfile(activate_this, dict(__file__=activate_this))
+
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/FlaskApp/")
+
+from TEST import app as application
+application.secret_key = 'Add your secret key'
+
+```
+
+9) Next create a .conf file in your site-available folder by running the following command below.
+nano /etc/apache2/sites-available/TEST.conf  where TEST is the name of the app
+
+```
+
+####example content for the TEST.conf file
+
+```python
+
+<VirtualHost *:80>
+		ServerName mywebsite.com
+		ServerAdmin admin@mywebsite.com
+		WSGIScriptAlias / /var/www/FlaskApp/test.wsgi
+		<Directory /var/www/FlaskApp/TEST/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		Alias /static /var/www/FlaskApp/TEST/static
+		<Directory /var/www/FlaskApp/TEST/static/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+```
+
+10) then run the command a2ensite TEST.
+
+11) Lastly we need to give apache access to the folders. navigate to /var/www/FlaskApp and type
+    the command chown -R www-data:www-data TEST
+
+12) run the command service apache2 reload
+
+This should be all your need to deploy your app to a apache server.
+
