@@ -25,9 +25,13 @@ YourApp
 ## Guide
 
 1) Download the zip file and extract to the location of choice
+
 2) navigate into folder flask-bootstrap-apache-template/YourApp
+
 3) create a folder called venv which will be your virtual enviroment
+
 4) Rename the folder called YourApp to your app name.
+
 5) Rename the .wsgi file to your app name, preferably in lowercase to the app name
 
 For example lets say we had a folder called FlaskApp which holds all your flask apps on the server, and your app your are deploying was called TEST, your folder structure on the server should look like this once deployed.
