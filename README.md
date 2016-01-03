@@ -28,7 +28,7 @@ YourApp
 
 2) navigate into folder flask-bootstrap-apache-template/YourApp
 
-3) create a folder called venv which will be your virtual enviroment
+3) Navigate to your YourApp/venv and edit the requirements.txt file to include the packages your app requires.
 
 4) Rename the folder called YourApp to your app name.
 
@@ -53,7 +53,7 @@ FlaskApp
   command virtualenv.(the period represents the current directory) and will install all python dependencies in the venv folder. 
 
 7)Still in the folder venv type the command source bin/activate which will activate the virtualenv.
-  Then install flask with the command pip install flask.
+  Then install all packages required by your app by running the command pip install -r requirements.txt.
 
 8)Edit the test.wsgi file and change the commands as required  
 
