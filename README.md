@@ -26,13 +26,11 @@ YourApp
 
 1) Download the zip file and extract to the location of choice
 
-2) navigate into folder flask-bootstrap-apache-template/YourApp
+2) Navigate to your YourApp/venv and edit the requirements.txt file to include the packages your app requires.
 
-3) Navigate to your YourApp/venv and edit the requirements.txt file to include the packages your app requires.
+3) Rename the folder called YourApp to your app name.
 
-4) Rename the folder called YourApp to your app name.
-
-5) Rename the .wsgi file to your app name, preferably in lowercase to the app name
+4) Rename the .wsgi file to your app name, preferably in lowercase to the app name
 
 For example lets say we had a folder called FlaskApp which holds all your flask apps on the server, and your app your are deploying was called TEST, your folder structure on the server should look like this once deployed.
 
@@ -49,13 +47,13 @@ FlaskApp
 ```  
 
 
-6)Once your folder is deployed to the server, navigate to TEST/venv and type the
+5)Once your folder is deployed to the server, navigate to TEST/venv and type the
   command virtualenv.(the period represents the current directory) and will install all python dependencies in the venv folder. 
 
-7)Still in the folder venv type the command source bin/activate which will activate the virtualenv.
+6)Still in the folder venv type the command source bin/activate which will activate the virtualenv.
   Then install all packages required by your app by running the command pip install -r requirements.txt.
 
-8)Edit the test.wsgi file and change the commands as required  
+7)Edit the test.wsgi file and change the commands as required  
 
 The wsgi file for deploying this app would look like this if your app was called TEST.
 
@@ -76,7 +74,7 @@ application.secret_key = 'Add your secret key'
 
 ```
 
-9) Next create a .conf file in your site-available folder by running the following command below.
+8) Next create a .conf file in your site-available folder by running the following command below.
 
 ```python
 
@@ -108,15 +106,15 @@ nano /etc/apache2/sites-available/TEST.conf  where TEST is the name of the app
 
 ```
 
-10) then run the command a2ensite TEST.
+9) then run the command a2ensite TEST.
 
-11) Lastly we need to give apache access to the folders. navigate to
+10) Lastly we need to give apache access to the folders. navigate to
     
     /var/www/FlaskApp and type the command
 
     chown -R www-data:www-data TEST
 
-12) run the command
+11) run the command
   
     service apache2 reload
 
