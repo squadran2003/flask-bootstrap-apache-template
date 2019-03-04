@@ -1,7 +1,7 @@
-##flask-bootstrap-apache-template
+## flask-bootstrap-apache-template
 A base template with correct folder structure for a flask app,the template also has all the css files for twitter bootstrap, also included a wsgi file for deployment to a apache server.
 
-##Motivation
+## Motivation
   The idea for this template came from building a few flask web apps. I found it a bit tedious to recreate all the folders,html files etc. This template aims to also make deployment to a apache2 server easy. The one aspect of coding that made me want to pull my hair out was deployment. I hope this template and guide makes using and deploying flask apps easier for other developers.
   
 ## Example
